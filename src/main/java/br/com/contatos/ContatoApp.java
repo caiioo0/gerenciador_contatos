@@ -18,7 +18,9 @@ public class ContatoApp {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("contatos");
         EntityManager em = emf.createEntityManager();
 
+        em.getTransaction().begin();
         em.persist(contato);
+        em.getTransaction().commit();
     }
 
 }
