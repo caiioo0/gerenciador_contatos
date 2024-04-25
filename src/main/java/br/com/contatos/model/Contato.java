@@ -7,7 +7,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name="tb_contatos")
 public class Contato {
-
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -26,8 +25,8 @@ public class Contato {
         return id;
     }
 
-    public void setLong(Long id) {
-        id = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -57,7 +56,7 @@ public class Contato {
     @Override
     public String toString() {
         return "Contato{" +
-                "Id=" + id +
+                "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", dataNascimento=" + dataNascimento +
