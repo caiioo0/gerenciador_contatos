@@ -13,7 +13,8 @@ public class ContatoApp {
         EntityManager em = Connection.getEntityManger();
         //register(em);
         //update(em);
-        delete(em);
+        //delete(em);
+        queryContactPerId(em);
 
     }
     public static void register(EntityManager em){
@@ -57,4 +58,15 @@ public class ContatoApp {
         em.getTransaction().commit();
 
     }
+
+    public static void queryContactPerId(EntityManager em){
+
+        ContatoDao contatoDao = new ContatoDao(em);
+
+        em.getTransaction().begin();
+        contatoDao.query(21L);
+        em.getTransaction().commit();
+
+    }
+
 }

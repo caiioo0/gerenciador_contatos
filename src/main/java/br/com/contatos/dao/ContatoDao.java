@@ -24,4 +24,9 @@ public class ContatoDao {
         em.remove(contactDelete);
     }
 
+    public void query(Long id){
+        Contato contactQuery = em.find(Contato.class, id);
+        System.out.println(contactQuery.toString());
+    }
+
 }
