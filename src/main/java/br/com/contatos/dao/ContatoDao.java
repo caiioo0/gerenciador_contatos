@@ -26,7 +26,11 @@ public class ContatoDao {
 
     public void query(Long id){
         Contato contactQuery = em.find(Contato.class, id);
-        System.out.println(contactQuery.toString());
+        if (contactQuery == null){
+            System.out.println("Contato não foi encontrado");
+        }else {
+            System.out.println(contactQuery.toString());
+        }
     }
 
 }
