@@ -6,6 +6,7 @@ import br.com.contatos.model.Contato;
 import jakarta.persistence.EntityManager;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class ContatoApp {
 
@@ -14,15 +15,18 @@ public class ContatoApp {
         //register(em);
         //update(em);
         //delete(em);
-        queryContactPerId(em);
-
+        consultaPorId(em);
+        //consultarTodosOsContatos(em);
+        //consultarContatosPorEmail(em);
+        //consultarContatosPorNome(em);
     }
+
     public static void register(EntityManager em){
 
         Contato contato = new Contato();
-        contato.setNome("Caio Arruda");
-        contato.setEmail("caio.rruda2019@gmail.com");
-        contato.setDataNascimento(LocalDate.of(2002,4,10));
+        contato.setNome("Melissa Chaves");
+        contato.setEmail("melissa@gmail.com");
+        contato.setDataNascimento(LocalDate.of(2000,2,21));
 
         ContatoDao contatoDao = new ContatoDao(em);
 
@@ -59,14 +63,38 @@ public class ContatoApp {
 
     }
 
-    public static void queryContactPerId(EntityManager em){
+    public static void consultaPorId(EntityManager em){
 
         ContatoDao contatoDao = new ContatoDao(em);
 
-        em.getTransaction().begin();
-        contatoDao.query(21L);
-        em.getTransaction().commit();
+        contatoDao.consultarContatoPorId(22L);
 
+    }
+
+    public static void consultarTodosOsContatos(EntityManager em){
+        ContatoDao contatoDao = new ContatoDao(em);
+
+        List<Contato> contatos = contatoDao.listarTodosContatos();
+
+        for (Contato contato : contatos){
+            System.out.println("-----------------------------------------");
+            System.out.println(contato.toString());
+            System.out.println("-----------------------------------------");
+        }
+        System.out.println("Registros finalizados !");
+    }
+
+    public static void consultarContatosPorNome(EntityManager em){
+        ContatoDao contatoDao = new ContatoDao(em);
+
+        List<Contato> contatos = contatoDao.listarContatoPorNome("Caio Arruda");
+
+        for (Contato contato : contatos){
+            System.out.println("-----------------------------------------");
+            System.out.println(contato.toString());
+            System.out.println("-----------------------------------------");
+        }
+        System.out.println("Registros finalizados !");
     }
 
 }
