@@ -21,6 +21,7 @@ public class Contato {
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
     @ManyToOne
+    @JoinColumn(name = "tipoContato_id")
     private TipoContato tipoContato;
 
     public TipoContato getTipoContato() {

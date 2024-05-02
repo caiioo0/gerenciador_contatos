@@ -2,6 +2,8 @@ package br.com.contatos.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_tipo_contato")
 public class TipoContato {
@@ -16,6 +18,8 @@ public class TipoContato {
             allocationSize = 1)
     private Long id;
     private String tipo;
+    @OneToMany(mappedBy = "tipoContato")
+    private List<Contato> contatos;
 
     public Long getId() {
         return id;
@@ -33,11 +37,19 @@ public class TipoContato {
         this.tipo = tipo;
     }
 
-    @Override
-    public String toString() {
-        return "TipoContato{" +
-                "id=" + id +
-                ", tipo='" + tipo + '\'' +
-                '}';
+    public List<Contato> getContatos() {
+        return contatos;
     }
+
+    public void setContatos(List<Contato> contatos) {
+        this.contatos = contatos;
+    }
+
+    //    @Override
+//    public String toString() {
+//        return "TipoContato{" +
+//                "id=" + id +
+//                ", tipo='" + tipo + '\'' +
+//                '}';
+//    }
 }
