@@ -20,6 +20,16 @@ public class Contato {
     private String email;
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
+    @ManyToOne
+    private TipoContato tipoContato;
+
+    public TipoContato getTipoContato() {
+        return tipoContato;
+    }
+
+    public void setTipoContato(TipoContato tipoContato) {
+        this.tipoContato = tipoContato;
+    }
 
     public Long getId() {
         return id;
@@ -60,6 +70,7 @@ public class Contato {
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", dataNascimento=" + dataNascimento +
+                ", tipoContato=" + tipoContato +
                 '}';
     }
 }

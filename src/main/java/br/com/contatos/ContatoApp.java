@@ -2,7 +2,9 @@ package br.com.contatos;
 
 import br.com.contatos.dao.Connection;
 import br.com.contatos.dao.ContatoDao;
+import br.com.contatos.dao.TipoContatoDao;
 import br.com.contatos.model.Contato;
+import br.com.contatos.model.TipoContato;
 import jakarta.persistence.EntityManager;
 
 import java.time.LocalDate;
@@ -23,14 +25,23 @@ public class ContatoApp {
 
     public static void register(EntityManager em){
 
+        TipoContato tipoContato = new TipoContato();
+        tipoContato.setId(1L);
+        tipoContato.setTipo("Família");
+
+        TipoContatoDao tipoContatoDao = new TipoContatoDao(em);
+
+        em.getTransaction().begin();
+        //tipoContatoDao.save(tipoContato);
+
         Contato contato = new Contato();
-        contato.setNome("Melissa Chaves");
-        contato.setEmail("melissa@gmail.com");
-        contato.setDataNascimento(LocalDate.of(2000,2,21));
+        contato.setNome("Caio Arruda");
+        contato.setEmail("caio@gmail.com");
+        contato.setDataNascimento(LocalDate.of(2003,2,21));
+        contato.setTipoContato(tipoContato);
 
         ContatoDao contatoDao = new ContatoDao(em);
 
-        em.getTransaction().begin();
         contatoDao.save(contato);
         em.getTransaction().commit();
     }
@@ -67,7 +78,7 @@ public class ContatoApp {
 
         ContatoDao contatoDao = new ContatoDao(em);
 
-        contatoDao.consultarContatoPorId(22L);
+        contatoDao.consultarContatoPorId(23L);
 
     }
 
